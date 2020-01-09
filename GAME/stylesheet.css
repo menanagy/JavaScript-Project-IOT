@@ -1,3 +1,7 @@
+body {
+    background-repeat: repeat-x;
+    background-size: auto;
+  }
 img {position: relative;
     left: 0;
     top: 0;}
@@ -12,9 +16,9 @@ height:550px; max-width:1500px; margin:0 auto;}
     width: 2%; 
     height: 4%; 
 }
-p{
+.healthnum{
     position: relative;
-    top: -71px;
+    top: -118px;
     left: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
