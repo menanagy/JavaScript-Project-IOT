@@ -1,4 +1,6 @@
 var context, controller, character, loop ,img ;
+var initX = 0;
+var initY = 0;
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -35,12 +37,14 @@ controller = {
 
       case 37:// left key
         controller.left = key_state;
+        
       break;
       case 32:// up key
         controller.up = key_state;
       break;
       case 39:// right key
         controller.right = key_state;
+ 
       break;
 
     }
@@ -60,20 +64,25 @@ loop = function() {
   }
 
   if (controller.left) {
-
-    character.x_velocity -= 0.5;
+        initX += 10;
+        document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
+        character.x_velocity -= 0.5;
 
   }
 
   if (controller.right) {
 
     character.x_velocity += 0.5;
+    initX -= 10;
+    document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";  
 
   }
 
   character.y_velocity +=0.5 ;// gravity
-  character.x += character.x_velocity;
-  character.y += character.y_velocity;
+  character.x += character.x_velocity; // noooooooooooooooooooooooooooooooooooooour
+  console.log(character.x)
+  character.y += character.y_velocity; // nouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur
+  console.log(character.y)
   character.x_velocity *= 0.9;// friction
   character.y_velocity *= 0.9;// friction
 
@@ -89,11 +98,11 @@ loop = function() {
   // if character is going off the left of the screen // hytshal 3alshan a7na 3andna msh 3ayzeno yalf l a5r el shasha
   if (character.x < 0) {
 
-    character.x = 1800;
-
-  } else if (character.x > 1800) {// if character goes past right boundary
-
     character.x = 0;
+
+  } else if (character.x > 300) {// if character goes past right boundary
+
+    character.x = 300;
 
   }
   
@@ -104,14 +113,6 @@ loop = function() {
   
   context.drawImage(img, character.x, character.y ,character.width,character.height);
   context.beginPath();
-  
-  
-  
- 
- context.beginPath();
-
- 
-
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
 
