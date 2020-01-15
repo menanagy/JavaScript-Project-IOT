@@ -8,8 +8,8 @@ img = document.getElementById("myImg");
 img.style.visibility = "hidden";
 /*Create Playe and Choose Character*/
 var character = new playerCharacters(100,true,100,0,0,0,0);//Constructor and Defualt Value 
-character.setCharacterImage(3);//Choose Character
-/*Move Playe Function*/
+character.setCharacterImage(2);//Choose Character
+/*Move Player Function*/
 loop = function() {
   context.clearRect(character.x, character.y ,character.width,character.height);
   if (controller.up && character.jumping == false) {
