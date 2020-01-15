@@ -1,4 +1,4 @@
-var context, controller, loop ,img ;
+var context, loop ,img ;
 var initX = 0;
 var initY = 0;
 context = document.querySelector("canvas").getContext("2d");
@@ -6,38 +6,10 @@ context.canvas.height = 950; //950==> 7dod el shasha el soda el marsoma fo2 el a
 context.canvas.width = 1800;
 img = document.getElementById("myImg");
 img.style.visibility = "hidden";
-/*var character = {  
-  height:100,
-  jumping:true,
-  width:100,
-  x:0, // 3ayzo yenzl fen 
-  x_velocity:0,
-  y:0,
-  y_velocity:0
-};*/
-/* Mina Edit*/
-var character = new character_(100,true,100,0,0,0,0);
-character.setCharacterImage(0);
-/* */
-controller = {
-  left:false,
-  right:false,
-  up:false,
-  keyListener:function(event) {
-    var key_state = (event.type == "keydown")?true:false;
-    switch(event.keyCode) {
-      case 37:// left key
-        controller.left = key_state;
-      break;
-      case 32:// up key
-        controller.up = key_state;
-      break;
-      case 39:// right key
-        controller.right = key_state;
-      break;
-    }
-  }
-};
+/*Create Playe and Choose Character*/
+var character = new playerCharacters(100,true,100,0,0,0,0);//Constructor and Defualt Value 
+character.setCharacterImage(3);//Choose Character
+/*Move Playe Function*/
 loop = function() {
   context.clearRect(character.x, character.y ,character.width,character.height);
   if (controller.up && character.jumping == false) {
@@ -46,13 +18,13 @@ loop = function() {
     character.jumping = true;
   }
   if (controller.left) {
-        initX += 10;
+        initX += 20;
         document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
         character.x_velocity -= 0.9;
   }
   if (controller.right) {
     character.x_velocity += 0.9;
-    initX -= 10;
+    initX -= 20;
     document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";  
   }
   character.y_velocity +=0.9 ;// gravity

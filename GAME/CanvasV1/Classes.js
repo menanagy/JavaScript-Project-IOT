@@ -1,5 +1,5 @@
 var array_character= ["Img_Character/beka.gif","Img_Character/lamis.gif", "Img_Character/sonic.gif","Img_Character/Circle.gif"];
-function character_(height,jumping,width,x,x_velocity,y,y_velocity){
+function playerCharacters(height,jumping,width,x,x_velocity,y,y_velocity){
     this.height=height;
     this.jumping=jumping;
     this.width=width;
@@ -8,49 +8,68 @@ function character_(height,jumping,width,x,x_velocity,y,y_velocity){
     this.y=y;
     this.y_velocity=y_velocity;
   };
-  /*character_.prototype.setHeight=function(h){
+  /*playerCharacters.prototype.setHeight=function(h){
     return this.height=h;
     }
-  character_.prototype.setJumping=function(h){
+  playerCharacters.prototype.setJumping=function(h){
     return this.jumping=h;
   }
-  character_.prototype.setWidth=function(h){
+  playerCharacters.prototype.setWidth=function(h){
     return this.width=h;
   }
-  character_.prototype.setX=function(h){
+  playerCharacters.prototype.setX=function(h){
     return this.x=h;
   }
-  character_.prototype.setHeight=function(h){
+  playerCharacters.prototype.setHeight=function(h){
     return this.x_velocity=h;
   }
-  character_.prototype.setY=function(h){
+  playerCharacters.prototype.setY=function(h){
     return this.y=h;
   }
-  character_.prototype.setY_Velocity=function(h){
+  playerCharacters.prototype.setY_Velocity=function(h){
     return this.y_velocity=h;
   }
-  character_.prototype.setHeight=function(h){
+  playerCharacters.prototype.setHeight=function(h){
     return this.height=h;
   }
-character_.prototype.getJumping=function(h){
+playerCharacters.prototype.getJumping=function(h){
   return this.jumping;
 }
-character_.prototype.getWidth=function(h){
+playerCharacters.prototype.getWidth=function(h){
   return this.width;
 }
-character_.prototype.getX=function(h){
+playerCharacters.prototype.getX=function(h){
   return this.x;
 }
-character_.prototype.getHeight=function(h){
+playerCharacters.prototype.getHeight=function(h){
   return this.x_velocity;
 }
-character_.prototype.getY=function(h){
+playerCharacters.prototype.getY=function(h){
   return this.y;
 }
-character_.prototype.getY_Velocity=function(h){
+playerCharacters.prototype.getY_Velocity=function(h){
   return this.y_velocity;
 }*/
-character_.prototype.setCharacterImage=function(i){
+playerCharacters.prototype.setCharacterImage=function(i){
   document.getElementById("myImg").src =array_character[i];
 }
+var controller = {
+  left:false,
+  right:false,
+  up:false,
+  keyListener:function(event) {
+    var key_state = (event.type == "keydown")?true:false;
+    switch(event.keyCode) {
+      case 37:// left key
+        controller.left = key_state;
+      break;
+      case 32:// up key
+        controller.up = key_state;
+      break;
+      case 39:// right key
+        controller.right = key_state;
+      break;
+    }
+  }
+};
   
