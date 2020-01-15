@@ -1,18 +1,7 @@
 body {
   background-image: url("BGF.jpg");   
   background-repeat: repeat-x;
-  background-size: auto;
- 
- 
-}
-
-
-
-  
-  
+  background-size: cover;
+}  
   canvas {
-   
-    
-  
-  
   }
