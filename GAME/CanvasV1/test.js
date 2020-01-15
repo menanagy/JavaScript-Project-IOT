@@ -1,6 +1,8 @@
-var context, controller, character, loop ,img ;
+var context, controller, character, loop ,img ,ob;
 var initX = 0;
 var initY = 0;
+var obx =500;
+var oby =600 ;
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -10,6 +12,9 @@ context.canvas.width = 1800;
 
 img = document.getElementById("beka");
 img.style.visibility = "hidden";
+
+ob=document.getElementById("OB");
+ob.style.visibility="hidden"
 
 character = {
 
@@ -55,7 +60,7 @@ controller = {
 
 loop = function() {
   context.clearRect(character.x, character.y ,character.width,character.height);
-
+  context.clearRect(obx,oby,150,30);
   if (controller.up && character.jumping == false) {
     
     character.y_velocity -= 50;
@@ -64,8 +69,8 @@ loop = function() {
   }
 
   if (controller.left) {
-        initX += 10;
-        document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
+       // initX += 10;
+        //document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
         character.x_velocity -= 0.5;
 
   }
@@ -74,15 +79,16 @@ loop = function() {
 
     character.x_velocity += 0.5;
     initX -= 10;
+    obx -=10;
     document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";  
 
   }
 
   character.y_velocity +=0.5 ;// gravity
   character.x += character.x_velocity; // noooooooooooooooooooooooooooooooooooooour
-  console.log(character.x)
+  
   character.y += character.y_velocity; // nouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur
-  console.log(character.y)
+
   character.x_velocity *= 0.9;// friction
   character.y_velocity *= 0.9;// friction
 
@@ -112,6 +118,8 @@ loop = function() {
   
   
   context.drawImage(img, character.x, character.y ,character.width,character.height);
+  context.beginPath();
+  context.drawImage(ob,obx,oby,150,30);
   context.beginPath();
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
