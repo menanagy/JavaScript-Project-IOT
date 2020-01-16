@@ -12,5 +12,14 @@ button{
     font-size: 100px;
     border-width: 0cm;
     border-radius: 20px;
-    background-color :whitesmoke;
+    /*background-color :whitesmoke;*/
+    background-color: rgba(6, 105, 67, 0.792);
+    color: aliceblue;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
 }
+
+button:hover {
+    background-color: rgb(30, 223, 159);
+    color: white;
+  }

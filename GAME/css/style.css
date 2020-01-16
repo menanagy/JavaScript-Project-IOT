@@ -1,7 +1,14 @@
 * {box-sizing:border-box}
 h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Times New Roman", Times, serif;
     text-align: center;
+    color: white;
+    font-size: 400%;
+}
+body{
+    background-image: url("../images/BG.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 img{
     display: block;

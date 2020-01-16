@@ -4,7 +4,7 @@ var initY = 0;
 var obx =500;
 var oby =700 ;
 var obstacleWidth = 150;
-var obstacleHeight = 55;
+var obstacleHeight = 75;
 var newpositiony;
 
 
@@ -85,7 +85,7 @@ function checkObstacleCollision(){
     }*/
 
   }
-  console.log("mana mab2olsh pika pika aho");
+  //console.log("mana mab2olsh pika pika aho");
   return false;
 }
 
@@ -124,6 +124,7 @@ loop = function() {
     console.log("ana batzene2 hena wenty wala hena");
     console.log(newpositiony);
     character.y = newpositiony;
+    character.y_velocity =0;
   }
   else{
     character.y += character.y_velocity;}

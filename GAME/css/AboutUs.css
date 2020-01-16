@@ -1,0 +1,62 @@
+
+/* Three image containers (use 25% for four, and 50% for two, etc)*/
+body{
+  background-image: url("../images/BG1.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.row{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.column {
+  float: left;
+  width: 22%;
+  padding: 5px;
+  
+}
+div,p{
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  color: white;
+}
+img{
+  border-style: solid;
+  border-width: 4px;
+  border-color: rgba(4, 78, 50, 0.792);
+  border-radius: 20px 20px;
+}
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+button{
+  width: 10%;
+  height: 7%;
+margin-left: 45%;
+margin-right: 45%;
+border: 2px;
+padding: 10px;
+border-radius: 7px;
+background-color: rgba(6, 105, 67, 0.982);
+color: aliceblue;
+font-weight: bold;
+}
+button:hover {
+  background-color: rgb(30, 223, 159);
+    color: white;
+}
