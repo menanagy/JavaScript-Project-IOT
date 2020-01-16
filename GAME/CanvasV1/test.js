@@ -1,6 +1,11 @@
 var context, controller, character, loop ,img ;
 var initX = 0;
 var initY = 0;
+var EnemyPositionX=1200, EnemyPositionY=810;
+var lastEnemyPositionX=-1,lastEnemyPositionY=-1;
+var EnemyFlag = 1 , EnemyIndex=0;
+var EnemiesArray=["enemy.gif","Hammer_Bro_death.gif","Mega_Goomba.gif"];
+
 
 context = document.querySelector("canvas").getContext("2d");
 
@@ -52,10 +57,44 @@ controller = {
   }
 
 };
+var Enemy= function(  EnemyWidth , EnemyHeight ){
+
+  this.EnemyWidth = EnemyWidth;
+  this.EnemyHeight = EnemyHeight;
+  this.img = new Image();
+//this.EnemySound = EnemySound;
+
+}
+
+Enemy.prototype.SetEnemyOnScreen= function( EnemyPicturePath ){
+
+  this.img.src = EnemyPicturePath;
+  context.clearRect(lastEnemyPositionX,lastEnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
+  context.drawImage( this.img , EnemyPositionX , EnemyPositionY ,this.EnemyWidth,this.EnemyHeight);
+
+}
+
+
+UpdateEnemyPosition=function(){
+
+  if(EnemyPositionX-88  == character.x){
+    context.clearRect(EnemyPositionX,EnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
+    EnemyFlag=1;
+    return;
+  }
+  lastEnemyPositionX=EnemyPositionX;
+  lastEnemyPositionY=EnemyPositionY;
+  EnemyPositionX --;
+ // EnemyPositionY = character.y;
+
+  //console.log( EnemyPositionX , " " , EnemyPositionY);
+
+}
+var CurrentEnemy =new Enemy(80,80);
 
 loop = function() {
   context.clearRect(character.x, character.y ,character.width,character.height);
-
+  
   if (controller.up && character.jumping == false) {
     
     character.y_velocity -= 50;
@@ -80,9 +119,9 @@ loop = function() {
 
   character.y_velocity +=0.5 ;// gravity
   character.x += character.x_velocity; // noooooooooooooooooooooooooooooooooooooour
-  console.log(character.x)
+  //console.log(character.x)
   character.y += character.y_velocity; // nouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur
-  console.log(character.y)
+  //console.log(character.y)
   character.x_velocity *= 0.9;// friction
   character.y_velocity *= 0.9;// friction
 
@@ -110,9 +149,24 @@ loop = function() {
   //context.fillRect(0, 0, 1800, 1600);// x, y, width, height
   
   
-  
   context.drawImage(img, character.x, character.y ,character.width,character.height);
-  context.beginPath();
+ 
+ 
+  UpdateEnemyPosition();
+  if(EnemyFlag == 0){
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+  }
+  else{
+    EnemyFlag = 0;
+    EnemyIndex=Math.floor((Math.random() * 2) + 1);
+    EnemyPositionX= 1200 + character.x, EnemyPositionY=810;  //dii msh shaghala leh??
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    console.log(EnemyIndex);
+    
+
+  }
+  
+  
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
 
@@ -121,3 +175,4 @@ loop = function() {
 window.addEventListener("keydown", controller.keyListener)
 window.addEventListener("keyup", controller.keyListener);
 window.requestAnimationFrame(loop);
+
