@@ -1,4 +1,5 @@
-var array_character= ["Img_Character/beka.gif","Img_Character/lamis.gif", "Img_Character/sonic.gif","Img_Character/Circle.gif"];
+var array_character= ["Images/beka.gif","Images/lamis.gif", "Images/sonic.gif","Images/Circle.gif"];
+
 function playerCharacters(height,jumping,width,x,x_velocity,y,y_velocity){
     this.height=height;
     this.jumping=jumping;
