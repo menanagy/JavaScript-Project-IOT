@@ -43,6 +43,10 @@ character = {
 };
 
 
+attack = {
+
+}
+
 
 controller = {
 
@@ -116,20 +120,37 @@ loop = function() {
   if(controller.nar)
   {
    
-    for(FX=90 ; character.x+FX <1500 ; FX=FX+0.5)
+    /*for(FX=90 ; character.x+FX <1500 ; FX=FX+50)
     {
-     // FX=FX+0.1
-      
       context.drawImage(fire ,character.x+FX, character.y+FY,30,30)
-      //context.beginPath();
-     // context.clearRect(character.x +FX, character.y+FY,30,30)
+      context.beginPath();
+      //context.clearRect(character.x -FX, character.y-FY,30,30)
      
-    }
+    }*/
 
+    context.drawImage(fire ,character.x+FX, character.y+FY,30,30)
+    FX+=31;
+    console.log(FX)
+    if(FX>900)
+    {
+      
+
+      for(FX=90 ; character.x+FX <950 ; FX=FX+31)
+      {
+       // context.drawImage(fire ,character.x+FX, character.y+FY,30,30)
+        context.beginPath();
+        context.clearRect(character.x +FX, character.y+FY,30,30)
+       
+      }
+
+      FX=90
+    }
+    
 
 
 
   }
+  
 
 
  
@@ -161,6 +182,9 @@ loop = function() {
   
   context.drawImage(img, character.x, character.y ,character.width,character.height);
   context.beginPath();
+
+
+
   
 
   //context.drawImage(ob,obx,oby,150,30);
