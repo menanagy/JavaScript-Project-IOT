@@ -1,0 +1,28 @@
+body{
+  background-image: url("../images/BG1.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  }
+
+#text-id{
+  margin-top: 100px;
+  text-align: center;
+  color:white ;
+  font-size: 100px;
+  font-weight: bold;
+}
+button{
+  border-radius: 10px;
+  padding: 10px 0px 10px 0px;
+  background-color: maroon;
+  border:none;
+  margin:70px 20px 50px 400px;
+  font-size: 15px;
+  color: wheat;
+  width:40%;
+  box-sizing: border-box;
+  font-weight: bold;
+  
+
+}
+button:hover{background-color:brown; }

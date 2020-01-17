@@ -12,6 +12,9 @@ var EnemyPositionX=2000, EnemyPositionY=810;
 var lastEnemyPositionX=-1,lastEnemyPositionY=-1;
 var EnemyFlag = 1 , EnemyIndex=0;
 var EnemiesArray=["../images/enemy.gif","../images/Hammer_Bro_death.gif","../images/Mega_Goomba.gif"];
+var LifesCounter=7,score=0,currentLevel=1;
+var ScoresFrequency={7:0,14:0,21:0};
+
 
 
 /*Create Playe and Choose Character*/
@@ -52,13 +55,14 @@ UpdateEnemyPosition=function(){
  
 }
 CheckEnemyCollision= function(){
-  console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
+  //console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
   //if(parseInt(character.x)+100 < EnemyPositionX) return ;
   if(EnemyPositionX <=0 ){
     //EnemyFlag = 0;                                                   //da 2 conditions y3adini aw yb2a wa2f fa lazm a-check 3ala l y
     EnemyIndex = Math.floor((Math.random() * 2) + 1);
     EnemyPositionX = 2500 + character.x, EnemyPositionY=810;  
     CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    score++;
    
   }
   else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 100 +level  && character.y == 800){
@@ -66,6 +70,7 @@ CheckEnemyCollision= function(){
     EnemyIndex=Math.floor((Math.random() * 2) + 1);
     EnemyPositionX= 1500 + character.x, EnemyPositionY=810;  
     CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    LifesCounter--;
 
   }
 
@@ -116,6 +121,22 @@ loop = function() {
 
   UpdateEnemyPosition();
   CheckEnemyCollision();
+  if(LifesCounter == 0){
+  
+    window.location.href = "../htmlpage/GAMEOVER.html"
+    //console.log(LifesCounter);
+  }
+
+if(score && score % 7 == 0 && ScoresFrequency[score] == 0){
+    if(level == 12 ){
+      //go to CONGRATS page w kolna n2ool fiiha mabrrok ya walaaad
+    }
+    level+=3;
+    ScoresFrequency[score]=1;
+    //ntala3 hna prompt aw 7aga 
+  }
+  console.log("cur score is ",score,"cur level is ",(level/3)-1);
+  
   CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
 
   // call update when the browser is ready to draw again
