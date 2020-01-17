@@ -1,0 +1,23 @@
+.center{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+    position: absolute;
+     left: 30%;
+     top: -10%;
+    
+}
+.text{
+    font-size: 1cm;
+    background-color: whitesmoke;
+    border-radius: 40px;
+}
+.container{
+    margin-top: 5px;
+    margin-bottom: 50px;
+    margin-right: 150px;
+    margin-left: 80px;
+    display: flex;
+    justify-content: center;
+}

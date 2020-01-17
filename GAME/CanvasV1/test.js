@@ -62,7 +62,7 @@ var Enemy= function(  EnemyWidth , EnemyHeight ){
   this.EnemyWidth = EnemyWidth;
   this.EnemyHeight = EnemyHeight;
   this.img = new Image();
-//this.EnemySound = EnemySound;
+  //this.EnemySound = EnemySound;
 
 }
 
@@ -75,20 +75,32 @@ Enemy.prototype.SetEnemyOnScreen= function( EnemyPicturePath ){
 }
 
 
-UpdateEnemyPosition=function(){
+UpdateEnemyPosition=function(level){
 
-  if(EnemyPositionX-88  == character.x){
-    context.clearRect(EnemyPositionX,EnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
-    EnemyFlag=1;
-    return;
+  lastEnemyPositionX = EnemyPositionX;
+  lastEnemyPositionY = EnemyPositionY;
+  EnemyPositionX -= level ;
+ 
+}
+CheckEnemyCollision= function(){
+  //console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
+  //if(parseInt(character.x)+100 < EnemyPositionX) return ;
+  if(EnemyPositionX <=0 ){
+    //EnemyFlag = 0;                                                   //da 2 conditions y3adini aw yb2a wa2f fa lazm a-check 3ala l y
+    EnemyIndex = Math.floor((Math.random() * 2) + 1);
+    EnemyPositionX = 1200 + character.x, EnemyPositionY=810;  
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    //console.log("awl if");
   }
-  lastEnemyPositionX=EnemyPositionX;
-  lastEnemyPositionY=EnemyPositionY;
-  EnemyPositionX --;
- // EnemyPositionY = character.y;
-
-  //console.log( EnemyPositionX , " " , EnemyPositionY);
-
+  else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 110 && character.y == 800){
+    
+    EnemyIndex=Math.floor((Math.random() * 2) + 1);
+    EnemyPositionX= 1200 + character.x, EnemyPositionY=810;  
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    //console.log("tani if");
+    //update character strenght
+  }
+ // console.log("bara")
 }
 var CurrentEnemy =new Enemy(80,80);
 
@@ -103,8 +115,7 @@ loop = function() {
   }
 
   if (controller.left) {
-        initX += 10;
-        document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
+
         character.x_velocity -= 0.5;
 
   }
@@ -153,18 +164,9 @@ loop = function() {
  
  
   UpdateEnemyPosition();
-  if(EnemyFlag == 0){
-    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
-  }
-  else{
-    EnemyFlag = 0;
-    EnemyIndex=Math.floor((Math.random() * 2) + 1);
-    EnemyPositionX= 1200 + character.x, EnemyPositionY=810;  //dii msh shaghala leh??
-    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
-    console.log(EnemyIndex);
-    
+  CheckEnemyCollision();
+  CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
 
-  }
   
   
   // call update when the browser is ready to draw again
@@ -175,4 +177,6 @@ loop = function() {
 window.addEventListener("keydown", controller.keyListener)
 window.addEventListener("keyup", controller.keyListener);
 window.requestAnimationFrame(loop);
+
+
 

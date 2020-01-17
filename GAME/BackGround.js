@@ -43,7 +43,7 @@ function enemyMovement(){
     var rect2=document.getElementsByClassName("mario")[0].getBoundingClientRect() ;
  
     var rect1= document.getElementsByClassName("enemy-img")[0].getBoundingClientRect();
-    console.log(rect1.x ,"  ,  " ,rect2.x);
+    console.log("da l enemy ",rect1.x ,"  ,  da mario" ,rect2.x);
     if(rect1.x - rect1.width == rect2.x){
       health--;
       $("p").html(health);
@@ -63,3 +63,9 @@ function enemyIncoming(playerLocationX,playerLocationY){
 
 enemyIncoming(initX,initY);
 var MovingEnemyInterval=setInterval(enemyMovement,10);
+
+/*var Enemy= function(){
+  //src gif 
+  //initial position x and y
+  //
+}*/
