@@ -66,6 +66,7 @@ CheckEnemyCollision= function(){
     EnemyPositionX = 2500 + character.x, EnemyPositionY=810;  
     CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
     score++;
+    screenScore++;
    
   }
   else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 100 +level  && character.y == 800){
