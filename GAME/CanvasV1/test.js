@@ -1,77 +1,73 @@
-var context, controller, character, loop ,img ,fire ;
+var context, controller, character, loop, img, fire;
 
 var initX = 0;
 var initY = 0;
 
-var FX=90;
-var FY=50;
-
-//var obx =500;
-//var oby =600 ;
-
-
-
+var FX = 90;
+var FY = 50;
 
 context = document.querySelector("canvas").getContext("2d");
 
 
-context.canvas.height = 950; // 7dod el shasha el soda el marsoma fo2 el asl
+context.canvas.height = 950;
 context.canvas.width = 1800;
 
 img = document.getElementById("beka");
 img.style.visibility = "hidden";
 
-//ob=document.getElementById("OB");
-//ob.style.visibility="hidden"
 
-fire=document.getElementById("fire");
-fire.style.visibility="hidden"
+fire = document.getElementById("fire");
+fire.style.visibility = "hidden"
 
 character = {
 
-  
-  height:100,
-  jumping:true,
-  width:100,
-  x:0, // 3ayzo yenzl fen 
-  x_velocity:0,
-  y:0,
-  y_velocity:0
+
+  height: 100,
+  jumping: true,
+  width: 100,
+  x: 0,
+  x_velocity: 0,
+  y: 0,
+  y_velocity: 0
 
 
 
 };
 
+
+attack = {
+
+}
 
 
 controller = {
 
-  left:false,
-  right:false,
-  up:false,
-  nar :false,
+  left: false,
+  right: false,
+  up: false,
+  nar: false,
 
-  keyListener:function(event) {
+  keyListener: function (event) {
 
-    var key_state = (event.type == "keydown")?true:false;
+    var key_state = (event.type == "keydown") ? true : false;
 
-    switch(event.keyCode) {
+    switch (event.keyCode) {
 
       case 37:// left key
         controller.left = key_state;
-        
-      break;
+
+        break;
       case 32:// up key
         controller.up = key_state;
-      break;
+        break;
       case 39:// right key
         controller.right = key_state;
- 
-      break;
+
+        break;
 
       case 13:
-        controller.nar=key_state;
-      break;
+        controller.nar = key_state;
+        break;
 
     }
 
@@ -79,51 +75,43 @@ controller = {
 
 };
 
-loop = function() {
-  context.clearRect(character.x, character.y ,character.width,character.height);
-  
-  
+loop = function () {
+  context.clearRect(character.x, character.y, character.width, character.height);
 
-
- // context.clearRect(obx+300,oby+20,150,30);
- // context.clearRect(obx+700,oby+10,150,30);
-  
+  context.clearRect(0, 0, 1800, 950)
 
   if (controller.up && character.jumping == false) {
-    
+
     character.y_velocity -= 50;
     character.jumping = true;
-    
+
 
   }
 
   if (controller.left) {
-    
 
-       character.x_velocity -= 0.5;
+
+    character.x_velocity -= 0.5;
 
   }
 
   if (controller.right) {
-   
+
     character.x_velocity += 0.5;
     initX -= 10;
-    //obx -=10;
-    document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";  
+    document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";
 
   }
 
-  if(controller.nar)
-  {
-   
-    for(FX=90 ; character.x+FX <1500 ; FX=FX+0.5)
-    {
-     // FX=FX+0.1
-      
-      context.drawImage(fire ,character.x+FX, character.y+FY,30,30)
-      //context.beginPath();
-     // context.clearRect(character.x +FX, character.y+FY,30,30)
-     
+  if (controller.nar) {
+
+
+
+    context.drawImage(fire, character.x + FX, character.y + FY, 30, 30)
+    FX += 31;
+    console.log(FX)
+    if (FX > 900) {
+      FX = 90
     }
 
 
@@ -132,10 +120,11 @@ loop = function() {
   }
 
 
- 
-  character.y_velocity +=0.5 ;// gravity
-  character.x += character.x_velocity; // noooooooooooooooooooooooooooooooooooooour
-  character.y += character.y_velocity; // nouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur
+
+
+  character.y_velocity += 0.5;// gravity
+  character.x += character.x_velocity;
+  character.y += character.y_velocity;
   character.x_velocity *= 0.9;// friction
   character.y_velocity *= 0.9;// friction
 
@@ -158,17 +147,10 @@ loop = function() {
     character.x = 300;
 
   }
-  
-  context.drawImage(img, character.x, character.y ,character.width,character.height);
-  context.beginPath();
-  
 
-  //context.drawImage(ob,obx,oby,150,30);
-  //context.drawImage(ob,obx+300,oby+20,150,30);
-  //context.drawImage(ob,obx+700,oby+10,150,30);
-  //context.beginPath();
-  
-  // call update when the browser is ready to draw again
+  context.drawImage(img, character.x, character.y, character.width, character.height);
+  context.beginPath();
+
   window.requestAnimationFrame(loop);
 
 };
