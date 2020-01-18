@@ -3,6 +3,18 @@ body {
   background-repeat: repeat-x;
   background-size: cover;
 }  
-  canvas {
-    
+
+  #RedScreen{
+    border: 3px solid rgb(134, 44, 2);
+    border-radius: 2px;
+    background-color :rgba(100, 26, 4, 0.226);
+    width: 20%;
+    margin-left: 0.3cm;
+    height: 5%;
+    margin-top: 0.5cm;
+    color:crimson;
+    font-size: 25px;
+    font-family: Jazz LET, fantasy;
+    padding: 10px;
+    top:20px;
   }

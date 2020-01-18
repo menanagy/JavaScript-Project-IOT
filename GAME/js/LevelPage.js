@@ -9,8 +9,8 @@ function scrolling(e) {
         if (Next >= 3) {
             Next = 0
         }
-        $(ArrayButtons).css('background-color', "white")
-        $(ArrayButtons[Next]).css('background-color', "pink")
+        $(ArrayButtons).css('background-color', "rgba(6, 105, 67, 0.982)")
+        $(ArrayButtons[Next]).css('background-color', "rgb(30, 223, 159)")
         Current=Next
         console.log(Current)
         console.log(Next);
@@ -21,8 +21,8 @@ function scrolling(e) {
         if (Previous <= -1) {
             Previous = 2
         }
-        $(ArrayButtons).css('background-color', "white")
-        $(ArrayButtons[Previous]).css('background-color', "pink")
+        $(ArrayButtons).css('background-color', "rgba(6, 105, 67, 0.982)")
+        $(ArrayButtons[Previous]).css('background-color', "rgb(30, 223, 159)")
         Current=Previous
         console.log(Current)
         console.log(Previous)
@@ -31,23 +31,23 @@ function scrolling(e) {
     }
     else if (e.which == 13)
     {
-        level_Num=Current+1;
+        level_Num=(Current+2)*3;
         localStorage.setItem("localLevelNum",level_Num);
         window.location.href ="GameBackGround.html";
     }
 }
 document.querySelectorAll("button")[0].addEventListener('click',function(){
-    level_Num=1;
+    level_Num=6;
     localStorage.setItem("localLevelNum",level_Num);
     window.location.href ="GameBackGround.html";
 });
 document.querySelectorAll("button")[1].addEventListener('click',function(){
-    level_Num=2;
+    level_Num=9;
     localStorage.setItem("localLevelNum",level_Num);
     window.location.href ="GameBackGround.html";
 });
 document.querySelectorAll("button")[2].addEventListener('click',function(){
-    level_Num=3;
+    level_Num=12;
     localStorage.setItem("localLevelNum",level_Num);
     window.location.href ="GameBackGround.html";
 });

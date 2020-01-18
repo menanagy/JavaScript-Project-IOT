@@ -1,4 +1,4 @@
-var array_character= ["../images/beka.gif","../images/Lam.gif", "../images/sonic.gif","../images/Circle.gif"];
+var array_character= ["../images/player1.gif","../images/player2.gif", "../images/player3.gif","../images/player4.gif"];
 
 function playerCharacters(height,jumping,width,x,x_velocity,y,y_velocity){
     this.height=height;
@@ -32,3 +32,29 @@ var controller = {
   }
 };
   
+var Enemy= function(  EnemyWidth , EnemyHeight ){
+
+  this.EnemyWidth = EnemyWidth;
+  this.EnemyHeight = EnemyHeight;
+  this.img = new Image();
+  //this.EnemySound = EnemySound;
+
+}
+
+Enemy.prototype.SetEnemyOnScreen= function( EnemyPicturePath ){
+
+  this.img.src = EnemyPicturePath;
+  context.clearRect(lastEnemyPositionX,lastEnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
+  context.drawImage( this.img , EnemyPositionX , EnemyPositionY ,this.EnemyWidth,this.EnemyHeight);
+
+}
+
+
+UpdateEnemyPosition=function(){
+
+  lastEnemyPositionX = EnemyPositionX;
+  lastEnemyPositionY = EnemyPositionY;
+  EnemyPositionX -= level ;
+ 
+}
+

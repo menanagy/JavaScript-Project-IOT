@@ -1,7 +1,7 @@
-var NameChar=["Fady Jan<img src='../images/true.gif' width='80' height = '50'>",
-"Lamis<img src='../images/true.gif' width='80' height = '50'>",
-"Mina Nagy<img src='../images/true.gif' width='80' height = '50'>",
-"Nour<img src='../images/true.gif' width='80' height = '50'>"
+var NameChar=["Fady Jan",
+"Lamis",
+"Mina Nagy",
+"Nour"
 ]
 var commentOnChar=[
 "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk<br>MMMMMMM",
@@ -9,7 +9,13 @@ var commentOnChar=[
 "KSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br>iiiiiii",
 "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV<br><<<<<<<"];
 var Num_img=0,interval;
-
+$(window).on('keydown', scrolling)
+function scrolling(e) {
+    if (e.which == 8){
+        console.log("pika pika");
+        window.location.href = "../html/index.html"
+    }
+}
 function Image_Display(){
     switch(Num_img)
     {
@@ -30,7 +36,7 @@ function Image_Display(){
 function myfunc_play(){
    
     localStorage.setItem("characterNum",Num_img);
-    window.location.href ="LevelPage.html";
+    window.location.href ="../html/LevelPage.html";
 }
 
 function myfunc_Right(){
@@ -39,9 +45,9 @@ function myfunc_Right(){
     if(Num_img==4){Num_img=0;}
     Image_Display(Num_img);
     console.log("Right : "+Num_img);
-    setTimeout(function(){ $(document.querySelector("#right")).css('background-color', "white"); }, 200);
+    setTimeout(function(){ $(document.querySelector("#right")).css('background-color',"rgba(6, 105, 67, 0.982)"); }, 200);
     document.querySelector("#head").innerHTML=NameChar[Num_img];
-    document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
+    //document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
     CharacterNumber=Num_img;
 }
 function myfunc_Left()
@@ -51,9 +57,9 @@ function myfunc_Left()
     if(Num_img<0){Num_img=3;}
     Image_Display(Num_img);
     console.log("Left : "+Num_img);
-    setTimeout(function(){ $(document.querySelector("#left")).css('background-color', "white"); }, 200);
+    setTimeout(function(){ $(document.querySelector("#left")).css('background-color',"rgba(6, 105, 67, 0.982)"); }, 200);
     document.querySelector("#head").innerHTML=NameChar[Num_img];
-    document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
+    //document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
     CharacterNumber=Num_img;
 }
 var play=document.getElementById("play").addEventListener('click',myfunc_play);
