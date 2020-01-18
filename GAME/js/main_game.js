@@ -23,30 +23,33 @@ var character = new playerCharacters(100,true,100,0,0,0,0);//Constructor and Def
 /*Choose Character from 4 Character */ 
 CharacterNumber=parseInt(localStorage.getItem("characterNum"));
 character.setCharacterImage(CharacterNumber);//Choose Character
-console.log(CharacterNumber);
-/*Choose Level*/ 
+
+
+/*Declaring an instance of the class*/
+var CurrentEnemy =new Enemy(80,80);
+
+/* Choosing the level and updating the score */
 level=parseInt(localStorage.getItem("localLevelNum"));
 
-
-document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
-document.getElementById('score_p').innerHTML=`Your score is  ${screenScore}`;
-document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
-
-
-var CurrentEnemy =new Enemy(80,80);
 score =((level/3)-2)*7;
-
 
 for (var k in ScoresFrequency) {
   if(score >= k){
     ScoresFrequency[k]=1;
   }
 }
+/* Showing the lives, level and score to the screen */
+document.getElementById('level_p').innerHTML=`Level   ${(level/3)-1}`;
+document.getElementById('score_p').innerHTML=`Score  ${screenScore}`;
+document.getElementById('lives_p').innerHTML=`Lives  ${LivesCounter}`;
 
 
-/*Move Player Function*/
+
+/*Game Loop */
 loop = function() {
+
   context.clearRect(character.x, character.y ,character.width,character.height);
+  /* Controlling character movements */
   if (controller.up && character.jumping == false) {
 
     character.y_velocity -= 50;
@@ -84,9 +87,10 @@ loop = function() {
   //context.fillRect(0, 0, 1800, 1600);// x, y, width, height
   context.drawImage(img, character.x, character.y ,character.width,character.height);
   context.beginPath();
-
+  /*Setting the enemy and updating it's position */
   UpdateEnemyPosition();
   CheckEnemyCollision();
+  /* Redirecting to last page (game over or congrats) */
   if(LivesCounter == 0){
   
     window.location.href = "../htmlpage/GAMEOVER.html"
@@ -104,15 +108,18 @@ loop = function() {
       ScoresFrequency[score] = 1;
     
     }
+    /*Setting the enemy and updating it's position */
   CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
 
-  document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
-  document.getElementById('score_p').innerHTML=`Your score is  ${screenScore}`;
-  document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
+  /* Updating the lives, level and score to the screen */
+  document.getElementById('level_p').innerHTML=`Level   ${(level/3)-1}`;
+  document.getElementById('score_p').innerHTML=`Score  ${screenScore}`;
+  document.getElementById('lives_p').innerHTML=`Lives  ${LivesCounter}`;
 
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
 };
+
 window.addEventListener("keydown", controller.keyListener);
 window.addEventListener("keyup", controller.keyListener);
 window.requestAnimationFrame(loop);

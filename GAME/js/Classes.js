@@ -31,7 +31,8 @@ var controller = {
     }
   }
 };
-  
+
+/*Enemy Class */
 var Enemy= function(  EnemyWidth , EnemyHeight ){
 
   this.EnemyWidth = EnemyWidth;
@@ -59,6 +60,8 @@ UpdateEnemyPosition=function(){
 }
 CheckEnemyCollision= function(){
   //console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
+
+  /*If the character escaped the enemy */
   if(EnemyPositionX <=0 ){
     EnemyIndex = Math.floor((Math.random() * 2) + 1);
     EnemyPositionX = 2500 + character.x, EnemyPositionY=810;  
@@ -67,6 +70,7 @@ CheckEnemyCollision= function(){
     score++;
    
   }
+  /*If the enemy attacked the character */
   else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 100 +level  && character.y == 800){
     
     EnemyIndex=Math.floor((Math.random() * 2) + 1);
