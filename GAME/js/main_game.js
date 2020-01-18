@@ -12,7 +12,7 @@ var EnemyPositionX=2000, EnemyPositionY=810;
 var lastEnemyPositionX=-1,lastEnemyPositionY=-1;
 var EnemyFlag = 1 , EnemyIndex=0;
 var EnemiesArray=["../images/enemy.gif","../images/Hammer_Bro_death.gif","../images/Mega_Goomba.gif"];
-var LifesCounter=7,score=0,currentLevel=1;
+var LivesCounter=7,score=0;
 var ScoresFrequency={7:0,14:0,21:0};
 
 
@@ -27,54 +27,11 @@ console.log(CharacterNumber);
 /*Choose Level*/ 
 level=parseInt(localStorage.getItem("localLevelNum"));
 console.log(level);
+document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
+document.getElementById('score_p').innerHTML=`Your score is  ${score}`;
+document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
 
 
-var Enemy= function(  EnemyWidth , EnemyHeight ){
-
-  this.EnemyWidth = EnemyWidth;
-  this.EnemyHeight = EnemyHeight;
-  this.img = new Image();
-  //this.EnemySound = EnemySound;
-
-}
-
-Enemy.prototype.SetEnemyOnScreen= function( EnemyPicturePath ){
-
-  this.img.src = EnemyPicturePath;
-  context.clearRect(lastEnemyPositionX,lastEnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
-  context.drawImage( this.img , EnemyPositionX , EnemyPositionY ,this.EnemyWidth,this.EnemyHeight);
-
-}
-
-
-UpdateEnemyPosition=function(){
-
-  lastEnemyPositionX = EnemyPositionX;
-  lastEnemyPositionY = EnemyPositionY;
-  EnemyPositionX -= level ;
- 
-}
-CheckEnemyCollision= function(){
-  //console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
-  //if(parseInt(character.x)+100 < EnemyPositionX) return ;
-  if(EnemyPositionX <=0 ){
-    //EnemyFlag = 0;                                                   //da 2 conditions y3adini aw yb2a wa2f fa lazm a-check 3ala l y
-    EnemyIndex = Math.floor((Math.random() * 2) + 1);
-    EnemyPositionX = 2500 + character.x, EnemyPositionY=810;  
-    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
-    score++;
-   
-  }
-  else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 100 +level  && character.y == 800){
-    
-    EnemyIndex=Math.floor((Math.random() * 2) + 1);
-    EnemyPositionX= 1500 + character.x, EnemyPositionY=810;  
-    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
-    LifesCounter--;
-
-  }
-
-}
 var CurrentEnemy =new Enemy(80,80);
 
 
@@ -121,23 +78,29 @@ loop = function() {
 
   UpdateEnemyPosition();
   CheckEnemyCollision();
-  if(LifesCounter == 0){
+  if(LivesCounter == 0){
   
     window.location.href = "../htmlpage/GAMEOVER.html"
-    //console.log(LifesCounter);
+    //console.log(LivesCounter);
   }
 
 if(score && score % 7 == 0 && ScoresFrequency[score] == 0){
-    if(level == 12 ){
+    if(level == 15 ){
       //go to CONGRATS page w kolna n2ool fiiha mabrrok ya walaaad
+      window.location.href = "../htmlpage/CongtartsPage.html";   
     }
     level+=3;
     ScoresFrequency[score]=1;
     //ntala3 hna prompt aw 7aga 
+   
   }
-  console.log("cur score is ",score,"cur level is ",(level/3)-1);
+  console.log("cur score is ",score,"cur level is ",(level/3)-1,"level gowa ",level);
   
   CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+
+document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
+document.getElementById('score_p').innerHTML=`Your score is  ${score}`;
+document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
 
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);

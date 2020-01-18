@@ -28,7 +28,6 @@ function Image_Display(){
     }
 }
 function myfunc_play(){
-   
     localStorage.setItem("characterNum",Num_img);
     window.location.href ="LevelPage.html";
 }
@@ -56,7 +55,7 @@ function myfunc_Left()
     document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
     CharacterNumber=Num_img;
 }
-var play=document.getElementById("play").addEventListener('click',myfunc_play);
+document.querySelector("#play").addEventListener('click',myfunc_play);
 document.getElementById("right").addEventListener('click',myfunc_Right);
 document.getElementById("left").addEventListener('click',myfunc_Left);
 window.addEventListener("keydown",function(event) {

@@ -1,8 +1,20 @@
 body {
   background-image: url("../images/BackgroundGame.jpg");   
   background-repeat: repeat-x;
-  background-size: cover;
+  background-size: 100% 100%;
 }  
   canvas {
     
+  }
+  #GreenScreen{
+    background-color : darkolivegreen;
+    margin-left: 5%;
+    margin-top: 50px;
+    width: 10%;
+    height: 70%;
+    color:maroon;
+    font-size: 25px;
+    padding: 30px;
+    border-color: maroon;
+    border-radius: 20px;
   }

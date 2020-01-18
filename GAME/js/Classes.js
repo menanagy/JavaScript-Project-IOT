@@ -32,3 +32,49 @@ var controller = {
   }
 };
   
+var Enemy= function(  EnemyWidth , EnemyHeight ){
+
+  this.EnemyWidth = EnemyWidth;
+  this.EnemyHeight = EnemyHeight;
+  this.img = new Image();
+  //this.EnemySound = EnemySound;
+
+}
+
+Enemy.prototype.SetEnemyOnScreen= function( EnemyPicturePath ){
+
+  this.img.src = EnemyPicturePath;
+  context.clearRect(lastEnemyPositionX,lastEnemyPositionY,CurrentEnemy.EnemyWidth,CurrentEnemy.EnemyHeight);
+  context.drawImage( this.img , EnemyPositionX , EnemyPositionY ,this.EnemyWidth,this.EnemyHeight);
+
+}
+
+
+UpdateEnemyPosition=function(){
+
+  lastEnemyPositionX = EnemyPositionX;
+  lastEnemyPositionY = EnemyPositionY;
+  EnemyPositionX -= level ;
+ 
+}
+CheckEnemyCollision= function(){
+  //console.log(character.x ,character.y,lastEnemyPositionX,EnemyPositionY);
+  //if(parseInt(character.x)+100 < EnemyPositionX) return ;
+  if(EnemyPositionX <=0 ){
+    //EnemyFlag = 0;                                                   //da 2 conditions y3adini aw yb2a wa2f fa lazm a-check 3ala l y
+    EnemyIndex = Math.floor((Math.random() * 2) + 1);
+    EnemyPositionX = 2500 + character.x, EnemyPositionY=810;  
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    score++;
+   
+  }
+  else if( parseInt(EnemyPositionX)  >=  parseInt(character.x) + 100  && parseInt(EnemyPositionX)  <=  parseInt(character.x) + 100 +level  && character.y == 800){
+    
+    EnemyIndex=Math.floor((Math.random() * 2) + 1);
+    EnemyPositionX= 1500 + character.x, EnemyPositionY=810;  
+    CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
+    LivesCounter--;
+
+  }
+
+}
