@@ -10,10 +10,10 @@ img.style.visibility = "hidden";
 
 var EnemyPositionX=2000, EnemyPositionY=810;
 var lastEnemyPositionX=-1,lastEnemyPositionY=-1;
-var EnemyFlag = 1 , EnemyIndex=0;
+var  EnemyIndex=0;
 var EnemiesArray=["../images/enemy.gif","../images/Hammer_Bro_death.gif","../images/Mega_Goomba.gif"];
-var LivesCounter=7,score=0;
-var ScoresFrequency={7:0,14:0,21:0};
+var LivesCounter=7,score=0,screenScore=0;
+var ScoresFrequency={ 7:0 , 14:0 , 21:0 };
 
 
 
@@ -26,13 +26,22 @@ character.setCharacterImage(CharacterNumber);//Choose Character
 console.log(CharacterNumber);
 /*Choose Level*/ 
 level=parseInt(localStorage.getItem("localLevelNum"));
-console.log(level);
+
+
 document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
-document.getElementById('score_p').innerHTML=`Your score is  ${score}`;
+document.getElementById('score_p').innerHTML=`Your score is  ${screenScore}`;
 document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
 
 
 var CurrentEnemy =new Enemy(80,80);
+score =((level/3)-2)*7;
+
+
+for (var k in ScoresFrequency) {
+  if(score >= k){
+    ScoresFrequency[k]=1;
+  }
+}
 
 
 /*Move Player Function*/
@@ -54,18 +63,18 @@ loop = function() {
     document.getElementsByTagName('body')[0].style.backgroundPositionX = initX + "px";  
   }
   character.y_velocity +=0.9 ;// gravity
-  character.x += character.x_velocity; // noooooooooooooooooooooooooooooooooooooour
-  //console.log(character.x)
-  character.y += character.y_velocity; // nouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuur
-  //console.log(character.y)
+  character.x += character.x_velocity;
+  character.y += character.y_velocity; 
   character.x_velocity *= 0.9;// friction
   character.y_velocity *= 0.9;// friction
+
   // if character is falling below floor line
   if (character.y > 800) {
     character.jumping = false;
     character.y = 800;
     character.y_velocity = 0;
   }
+
   // if character is going off the left of the screen // hytshal 3alshan a7na 3andna msh 3ayzeno yalf l a5r el shasha
   if (character.x < 0) {
     character.x = 0;
@@ -81,26 +90,25 @@ loop = function() {
   if(LivesCounter == 0){
   
     window.location.href = "../htmlpage/GAMEOVER.html"
-    //console.log(LivesCounter);
+ 
   }
 
-if(score && score % 7 == 0 && ScoresFrequency[score] == 0){
-    if(level == 15 ){
-      //go to CONGRATS page w kolna n2ool fiiha mabrrok ya walaaad
-      window.location.href = "../htmlpage/CongtartsPage.html";   
+  if(score && score % 7 == 0 && ScoresFrequency[score] == 0){
+      if(score ==21 ){
+        
+        window.location.href = "../htmlpage/CongtartsPage.html"; 
+
+      }
+
+      level += 3;
+      ScoresFrequency[score] = 1;
+    
     }
-    level+=3;
-    ScoresFrequency[score]=1;
-    //ntala3 hna prompt aw 7aga 
-   
-  }
-  console.log("cur score is ",score,"cur level is ",(level/3)-1,"level gowa ",level);
-  
   CurrentEnemy.SetEnemyOnScreen(EnemiesArray[EnemyIndex]);
 
-document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
-document.getElementById('score_p').innerHTML=`Your score is  ${score}`;
-document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
+  document.getElementById('level_p').innerHTML=`Level number  ${(level/3)-1}`;
+  document.getElementById('score_p').innerHTML=`Your score is  ${screenScore}`;
+  document.getElementById('lives_p').innerHTML=`Number of lives remaining  ${LivesCounter}`;
 
   // call update when the browser is ready to draw again
   window.requestAnimationFrame(loop);
