@@ -9,7 +9,13 @@ var commentOnChar=[
 "KSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS<br>iiiiiii",
 "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV<br><<<<<<<"];
 var Num_img=0,interval;
-
+$(window).on('keydown', scrolling)
+function scrolling(e) {
+    if (e.which == 8){
+        console.log("pika pika");
+        window.location.href = "../html/Menu.html"
+    }
+}
 function Image_Display(){
     switch(Num_img)
     {
@@ -30,7 +36,7 @@ function Image_Display(){
 function myfunc_play(){
    
     localStorage.setItem("characterNum",Num_img);
-    window.location.href ="LevelPage.html";
+    window.location.href ="../html/LevelPage.html";
 }
 
 function myfunc_Right(){
@@ -41,7 +47,7 @@ function myfunc_Right(){
     console.log("Right : "+Num_img);
     setTimeout(function(){ $(document.querySelector("#right")).css('background-color',"rgba(6, 105, 67, 0.982)"); }, 200);
     document.querySelector("#head").innerHTML=NameChar[Num_img];
-    document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
+    //document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
     CharacterNumber=Num_img;
 }
 function myfunc_Left()
@@ -53,7 +59,7 @@ function myfunc_Left()
     console.log("Left : "+Num_img);
     setTimeout(function(){ $(document.querySelector("#left")).css('background-color',"rgba(6, 105, 67, 0.982)"); }, 200);
     document.querySelector("#head").innerHTML=NameChar[Num_img];
-    document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
+    //document.querySelector("#MessageChar").innerHTML=commentOnChar[Num_img];
     CharacterNumber=Num_img;
 }
 var play=document.getElementById("play").addEventListener('click',myfunc_play);

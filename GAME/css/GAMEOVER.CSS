@@ -14,15 +14,19 @@ body{
 button{
   border-radius: 10px;
   padding: 10px 0px 10px 0px;
-  background-color: maroon;
+  background-color: rgba(6, 105, 67, 0.982);
+  color: aliceblue;
   border:none;
   margin:70px 20px 50px 400px;
   font-size: 15px;
   color: wheat;
-  width:40%;
+  width:30%;
+  margin-left: 35%;
+  margin-right: 35%;
   box-sizing: border-box;
   font-weight: bold;
-  
-
 }
-button:hover{background-color:brown; }
+button:hover{
+  background-color: rgb(30, 223, 159);
+  color: white;
+ }

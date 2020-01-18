@@ -3,6 +3,17 @@ body {
   background-repeat: repeat-x;
   background-size: cover;
 }  
-  canvas {
-    
+
+  #GreenScreen{
+    border: 3px solid rgb(2, 134, 46);
+    border-radius: 2px;
+    background-color :rgba(4, 100, 4, 0.226);
+    width: 20%;
+    margin-left: 0.3cm;
+    height: 5%;
+    margin-top: 0.5cm;
+    color:rgb(2, 134, 46);
+    font-size: 25px;
+    font-family: Jazz LET, fantasy;
+    padding: 10px;
   }

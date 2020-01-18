@@ -1,3 +1,3 @@
 $("button").on("click", function () {
-    window.location.href = "../Menu.html"
+    window.location.href = "../html/Menu.html"
 })

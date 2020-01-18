@@ -2,11 +2,12 @@ div,p{
     text-align: center;
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
+    font-size: 0.5cm;
 }
 body{
-    background-image: url("../images/BG.jpg");
+    background-image: url("../images/BG1.jpg");
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
 }
 div
 {
@@ -19,14 +20,14 @@ div
 button{
     width: 10%;
     height: 7%;
-margin-left: 45%;
-margin-right: 45%;
-border: 2px;
-  padding: 10px;
-  border-radius: 7px;
-  background-color: rgba(6, 105, 67, 0.982);
-  color: aliceblue;
-  font-weight: bold;
+    margin-left: 45%;
+    margin-right: 45%;
+    border: 2px;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: rgba(6, 105, 67, 0.982);
+    color: aliceblue;
+    font-weight: bold;
 }
 button:hover {
     background-color: rgb(30, 223, 159);

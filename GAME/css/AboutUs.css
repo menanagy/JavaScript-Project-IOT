@@ -3,7 +3,7 @@
 body{
   background-image: url("../images/BG1.jpg");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-color: rgba(0, 0, 0, 0.8);
 }
 .row{
